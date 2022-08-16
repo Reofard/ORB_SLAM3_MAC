@@ -9,8 +9,14 @@ MESSAGE("Build type: " ${CMAKE_BUILD_TYPE})
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall   -O3")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall   -O3")
-set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -march=native")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -mcpu=apple-m1")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -mcpu=apple-m1")
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -L/opt/homebrew/Cellar/boost/1.79.0_1/lib -Wall  -O3 -mcpu=apple-m1 ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L/opt/homebrew/Cellar/boost/1.79.0_1/lib -Wall  -O3 -mcpu=apple-m1")
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -L/opt/homebrew/Cellar/openssl@3/3.0.5/lib -Wall  -O3 -mcpu=apple-m1 ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L/opt/homebrew/Cellar/openssl@3/3.0.5/lib -Wall  -O3 -mcpu=apple-m1")
 
 # Check C++11 or C++0x support
 include(CheckCXXCompilerFlag)
@@ -119,8 +125,8 @@ target_link_libraries(${PROJECT_NAME}
 ${OpenCV_LIBS}
 ${EIGEN3_LIBS}
 ${Pangolin_LIBRARIES}
-${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
-${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
+${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.dylib
+${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.dylib
 -lboost_serialization
 -lcrypto
 )
